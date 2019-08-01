@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,23 +14,23 @@ const Register = () => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
-      e.preventDefault();
-      if(password !== password2){
-        console.log('Passwords don't match)
-      } else {
-          console.log(formData);
-      }
-  }
+  const onSubmit = async e => {
+    e.preventDefault();
+    if (password !== password2) {
+      console.log("Passwords do not match");
+    } else {
+      console.log("success");
+    }
+  };
 
   return (
     <Fragment>
-      <h1 class='large text-primary'>Sign Up</h1>
-      <p class='lead'>
-        <i class='fas fa-user' /> Create Your Account
+      <h1 className='large text-primary'>Sign Up</h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Create Your Account
       </p>
-      <form class='form' onSubmit = {e=>onSubmit(e)}>
-        <div class='form-group'>
+      <form className='form' onSubmit={e => onSubmit(e)}>
+        <div className='form-group'>
           <input
             type='text'
             placeholder='Name'
@@ -39,21 +40,21 @@ const Register = () => {
             required
           />
         </div>
-        <div class='form-group'>
+        <div className='form-group'>
           <input
             type='email'
             placeholder='Email Address'
             name='email'
-            value={name}
+            value={email}
             onChange={e => onChange(e)}
             required
           />
-          <small class='form-text'>
+          <small className='form-text'>
             This site uses Gravatar so if you want a profile image, use a
             Gravatar email
           </small>
         </div>
-        <div class='form-group'>
+        <div className='form-group'>
           <input
             type='password'
             placeholder='Password'
@@ -63,7 +64,7 @@ const Register = () => {
             onChange={e => onChange(e)}
           />
         </div>
-        <div class='form-group'>
+        <div className='form-group'>
           <input
             type='password'
             placeholder='Confirm Password'
@@ -73,10 +74,10 @@ const Register = () => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' class='btn btn-primary' value='Register' />
+        <input type='submit' className='btn btn-primary' value='Register' />
       </form>
-      <p class='my-1'>
-        Already have an account? <a href='login.html'>Sign In</a>
+      <p className='my-1'>
+        Already have an account? <Link to='/login'>Sign In</Link>
       </p>
     </Fragment>
   );
